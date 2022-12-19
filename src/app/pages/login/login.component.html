@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="login">
+      <form [formGroup]="registerForm" (submit)="submit()">
+        <h1>Login</h1>
+        <hr>
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" placeholder="example@gmail.com">
+        <label for="password">Password</label>
+        <input formControlName="password" type="password" placeholder="Password">
+        <button type="submit">Login</button>
+        <p class="forget">
+            <a>Register</a>
+          </p>
+        <p class="forget">
+          <a>Forget Password</a>
+        </p>
+      </form>
+    </div>
+  </div>

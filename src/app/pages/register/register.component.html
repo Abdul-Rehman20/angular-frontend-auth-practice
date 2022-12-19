@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="register">
+      <form [formGroup]="registerForm" (submit)="submit()">
+        <h1>Register</h1>
+        <hr>
+        <label for="first">First Name</label>
+        <input formControlName="first_name" placeholder="First Name" required>
+        <label for="last">Last Name</label>
+        <input formControlName="last_name" placeholder="Last Name" required>
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" placeholder="example@gmail.com" required>
+        <label for="password">Password</label>
+        <input formControlName="password" type="password" placeholder="Password" required>
+        <label for="password_confirm">Password Confirm</label>
+        <input formControlName="password_confirm" type="password" placeholder="Password Confirm" required>
+        <button type="submit">Register</button>
+      </form> 
+    </div>
+  </div>

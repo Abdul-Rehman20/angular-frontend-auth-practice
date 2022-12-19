@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #3e2cff;
+  }
+  
+  .container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+  }
+  
+  .login {
+    width: 400px;
+  }
+  
+  form {
+    width: 250px;
+    margin: 60px auto;
+  }
+  
+  h1 {
+    margin: 20px;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+  
+  hr {
+    border-top: 3px solid #3e2cff;
+  }
+  
+  p {
+    text-align: center;
+    margin: 10px;
+    font-size: 13px;
+  }
+  
+  form label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px;
+    margin-top: 8px;
+  }
+  
+  input {
+    width: 100%;
+    margin: 2px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    border-radius: 9px;
+    border: 1px solid gray;
+  }
+  
+  button {
+    border: none;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 8px;
+    background: #3e2cff;
+  }
+
+  .forget {
+    font-size: 12px;
+    margin-top: 16px;
+    text-align: end;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #3e2cff;
+  }
+  
+  .signup {
+    display: inline;
+    margin-bottom: cpx;
+  }

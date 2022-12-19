@@ -1,0 +1,40 @@
+
+    <mat-sidenav #sidenav>
+      <mat-nav-list (click)="sidenav.close()">
+        <a mat-list-item>
+          <mat-icon>person_add</mat-icon>
+          <span>Register</span>
+        </a>
+        <a mat-list-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Login</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a mat-button routerLink="/">
+        Home
+      </a>
+      <div *ngIf="authenticated">
+        <a mat-button routerLink="login" (click)="logout()">
+          <mat-icon>account_circle</mat-icon>
+          LogOut
+        </a>
+    </div>
+      <ng-container *ngIf="!authenticated">
+        <a mat-button routerLink="register">
+          <mat-icon>person_add</mat-icon>
+          Register
+        </a>
+        <a mat-button routerLink="login">
+          <mat-icon>account_circle</mat-icon>
+          Login
+        </a>
+    </ng-container>
+    </mat-toolbar>
+    
+
