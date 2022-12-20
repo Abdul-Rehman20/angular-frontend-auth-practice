@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Auth } from 'src/app/classes/auth';
-import { AuthService } from 'src/app/service/auth.service';
 import jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { NotFoundError } from 'rxjs';
 
 export interface Tile {
   color: string;
@@ -24,46 +23,37 @@ export class HomeComponent implements OnInit {
     { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
-  message = '';
+  message;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit(): void {
-    this.authService.jwtUserToken.subscribe((token) => {
-      console.log(token);
-      if (token) {
-        const decoded = jwtDecode(token);
-        console.log(decoded);
-        console.log(decoded['sub']);
-        const url = `${'http://localhost:3333/api/users/'}decoded`;
-        this.http
-          .get(url, { headers: { Authorization: `Bearer ${token}` } })
-          .subscribe({
-            next: (user) => {
-              console.log(user);
-              this.message = `Hi ${user['name']}`;
-              this.router.navigate(['']);
-            },
-            error: (err) => {
-              console.log(err);
-              this.router.navigate(['register']);
-            },
-          });
-      }
-    });
-    // this.http.get('http://localhost:8000/auth/user').subscribe(
-    //   (user: any) => {
-    //     this.message = `Hi ${user.first_name} ${user.last_name}`;
-    //     Auth.authEmitter.emit(true);
-    //   },
-    //   () => {
-    //     this.message = 'You Are Not Logged In';
-    //     Auth.authEmitter.emit(false);
-    //   }
-    // );
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      console.log(decoded['sub']);
+      const id = decoded['sub'];
+      const url = `${'http://localhost:3333/api/users/'}id`;
+      this.http
+        .get(url, { headers: { Authorization: `Bearer ${token}` } })
+        .subscribe({
+          next: (user) => {
+            console.log('User: ', user);
+            localStorage.setItem('user', JSON.stringify(user));
+            const a = JSON.parse(localStorage.getItem('user'));
+            console.log(a['name']);
+            this.message = a['name'];
+            this.router.navigate(['']);
+          },
+          error: (err) => {
+            console.log(err);
+            this.router.navigate(['login']);
+          },
+        });
+    } else {
+      throw new NotFoundError('Token not found');
+      this.router.navigate(['login']);
+    }
   }
 }

@@ -18,6 +18,6 @@ export class NavComponent implements OnInit {
   }
 
   logout(): void {
-    this.http.post('http://localhost:8000/auth/logout', {}).subscribe(() => {});
+    localStorage.clear();
   }
 }
