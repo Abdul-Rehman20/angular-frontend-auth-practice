@@ -41,7 +41,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
     HttpClientModule,
     MatGridListModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    NavComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
