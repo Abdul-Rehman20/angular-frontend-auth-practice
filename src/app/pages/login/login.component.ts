@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       email: '',
       password: '',
+      signedIn: true,
     });
   }
   submit(): void {
@@ -30,8 +31,10 @@ export class LoginComponent implements OnInit {
       )
       .subscribe({
         next: (data) => {
-          console.log(data['access_token']);
-          localStorage.setItem('token', data['access_token']);
+          // console.log(data['accessToken']);
+          localStorage.setItem('token', data['accessToken']);
+          localStorage.setItem('refresh', data['refreshToken']);
+          localStorage.setItem('signedIn', data['signedIn']);
           this.router.navigate(['']);
         },
         error: (err) => {
